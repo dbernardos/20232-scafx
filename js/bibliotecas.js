@@ -125,3 +125,5 @@ plotly.plot(plotData, graphOptions, function (err, msg) {
     }
    });
  });
+
+ /**https://medium.com/@joaogabriellima/clusteriza%C3%A7%C3%A3o-de-dados-com-javascript-parte-3-algoritmos-de-clusteriza%C3%A7%C3%A3o-na-pr%C3%A1tica-799b46f423d4 */
