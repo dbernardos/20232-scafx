@@ -1,4 +1,4 @@
-const texto =document.querySelector("#texto")
+const texto = document.querySelector("#texto")
 
 const endpoint ="arquivo.txt" 
 fetch(endpoint)
