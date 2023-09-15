@@ -13,3 +13,4 @@ def aux_Text_Based_Count(ls_codigo, commands):
                 count+=1
         dict_text.update({cmd: count})
     return dict_text
+    

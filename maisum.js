@@ -139,6 +139,8 @@ plotly.plot(plotData, graphOptions, function (err, msg) {
  });
 });
 
+
+
 // build centroids graph model
 var centroidTrace = {
   x: centroids.map(function(c){
