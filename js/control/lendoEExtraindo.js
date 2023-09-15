@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leitura de Arquivo em Formulário</title>
-</head>
-<body>
-  <form id="myForm">
-    <input type="file" id="fileInput">
-    <button type="button" id="btnExtrair">Extrair</button>
-  </form>
+const kmeans = require('./kmeans.js');
 
-  <script>
+const resultado = extrair(lista_codigo, carac);
+const dados = Object.values(resultado).map(count => [count]);
+
+const numClusters = 3;
+const clusters = kmeans.runKMeans(dados, numClusters);
+
+console.log(clusters);
+
     const frm = document.querySelector("#myForm");
 
     function lerArquivoComoString(arquivo, callback) {
@@ -76,7 +72,3 @@
         });
       }
     });
-  </script>
-</body>
-</html>
-

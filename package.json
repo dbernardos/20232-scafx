@@ -10,11 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "data-forge": "^1.10.1",
+    "kmeans-js": "^0.1.2",
     "ml-kmeans": "^6.0.0",
     "opn": "^6.0.0",
     "plotly": "^1.0.6",
     "shaman": "^0.3.2",
     "simple-statistics": "^7.8.3"
   },
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {}
 }
