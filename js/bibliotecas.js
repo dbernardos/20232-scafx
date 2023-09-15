@@ -3,7 +3,9 @@ const stats = require('simple-statistics');
  const dataForge = require('data-forge');
  const config = require('./config');
  const plotly = require('plotly')(config.USERNAME, config.API_KEY);
- const opn = require('opn');
+ const opn = require('opn'); 
+ require('data-forge');
+ require('shaman');
 
  const df = dataForge.readFileSync('../datasets/iris.csv').parseCSV();
 
