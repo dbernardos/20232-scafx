@@ -70,7 +70,14 @@
 
             // Agora, você pode chamar a função extrair com a lista de características e o conteúdo do arquivo.
             const lista_codigo = conteudo.split('\n'); // Divide o conteúdo em linhas.
-            const carac = ["if", "for", "while"];
+            const carac = [
+  "if", "for", "while", "case", "else", "fgets", "getch", "getchar", "getche",
+  "putchar", "puts", "switch", "gets", "break", "return", "exit", "do", "strcpy",
+  "strcmp", "strncpy", "strlen", "strupr", "strlwr", "strrev", "tolower", "toupper",
+  "isalpha", "fopen", "fclose", "feof", "remove", "fflush", "sizeof", "typedef",
+  "struct", "malloc", "free", "#include", "system", "default", "main", "functions",
+  "argc", "argv"
+];
             const resultado = extrair(lista_codigo, carac);
             console.log(resultado); // Exibirá o resultado no console
 
