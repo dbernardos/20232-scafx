@@ -1,34 +1,35 @@
-<!-- views/index.ejs -->
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leitura de Arquivo em Formulário</title>
 </head>
+
 <body>
   <form id="myForm">
     <input type="file" id="fileInput">
+
     <button type="button" id="btnExtrair">Extrair</button>
   </form>
 
-  <script src="novo-kmeans.js"></script>
+  <script src="/js/main/novo-kmeans.js"></script>
 
   <script>
-    const kmeans = require('node-kmeans');
-      
+
     const frm = document.querySelector("#myForm");
 
     function lerArquivoComoString(arquivo, callback) {
       const leitor = new FileReader();
 
-      leitor.onload = function(event) {
+      leitor.onload = function (event) {
         const resultado = event.target.result;
         callback(null, resultado);
       };
 
-      leitor.onerror = function(event) {
+      leitor.onerror = function (event) {
         callback(event.target.error, null);
       };
 
@@ -63,11 +64,11 @@
     // Exemplo de uso:
     const input = document.getElementById('fileInput');
 
-    input.addEventListener('change', function(event) {
+    input.addEventListener('change', function (event) {
       const arquivo = event.target.files[0];
 
       if (arquivo) {
-        lerArquivoComoString(arquivo, function(erro, conteudo) {
+        lerArquivoComoString(arquivo, function (erro, conteudo) {
           if (erro) {
             console.error('Erro ao ler o arquivo:', erro);
           } else {
@@ -87,8 +88,8 @@
             const resultado = extrair(lista_codigo, carac);
             console.log(resultado); // Exibirá o resultado no console
 
-            kmeans.clusterize(carac, { k },(err, result)=>{
-              if(err){
+            kmeans.clusterize(carac, { k }, (err, result) => {
+              if (err) {
                 console.error(err);
                 return;
               }
@@ -96,8 +97,8 @@
               console.log('Cluster assignments:', clusterAssignments);
             })
 
-             //const numClusters = 3;
-             //const clusters = kmeans.runKMeans(lista_codigo, numClusters);
+            //const numClusters = 3;
+            //const clusters = kmeans.runKMeans(lista_codigo, numClusters);
             // console.log(clusters);
           }
         });
@@ -105,4 +106,5 @@
     });
   </script>
 </body>
+
 </html>
