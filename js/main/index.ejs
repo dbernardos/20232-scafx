@@ -1,3 +1,5 @@
+<!-- views/index.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +13,11 @@
     <button type="button" id="btnExtrair">Extrair</button>
   </form>
 
-<script src="novo-kmeans.js"></script>
+  <script src="novo-kmeans.js"></script>
 
-<script>
-  const kmeans = require('node-kmeans');
-    
+  <script>
+    const kmeans = require('node-kmeans');
+      
     const frm = document.querySelector("#myForm");
 
     function lerArquivoComoString(arquivo, callback) {
@@ -74,13 +76,14 @@
             // Agora, você pode chamar a função extrair com a lista de características e o conteúdo do arquivo.
             const lista_codigo = conteudo.split('\n'); // Divide o conteúdo em linhas.
             const carac = [
-  "if", "for", "while", "case", "else", "fgets", "getch", "getchar", "getche",
-  "putchar", "puts", "switch", "gets", "break", "return", "exit", "do", "strcpy",
-  "strcmp", "strncpy", "strlen", "strupr", "strlwr", "strrev", "tolower", "toupper",
-  "isalpha", "fopen", "fclose", "feof", "remove", "fflush", "sizeof", "typedef",
-  "struct", "malloc", "free", "#include", "system", "default", "main", "functions",
-  "argc", "argv"
-];
+              "if", "for", "while", "case", "else", "fgets", "getch", "getchar", "getche",
+              "putchar", "puts", "switch", "gets", "break", "return", "exit", "do", "strcpy",
+              "strcmp", "strncpy", "strlen", "strupr", "strlwr", "strrev", "tolower", "toupper",
+              "isalpha", "fopen", "fclose", "feof", "remove", "fflush", "sizeof", "typedef",
+              "struct", "malloc", "free", "#include", "system", "default", "main", "functions",
+              "argc", "argv"
+            ];
+
             const resultado = extrair(lista_codigo, carac);
             console.log(resultado); // Exibirá o resultado no console
 
@@ -89,7 +92,7 @@
                 console.error(err);
                 return;
               }
-              constclusterAssignments = result.map(point => point.cluster);
+              const clusterAssignments = result.map(point => point.cluster);
               console.log('Cluster assignments:', clusterAssignments);
             })
 
@@ -101,6 +104,5 @@
       }
     });
   </script>
-  
 </body>
 </html>
