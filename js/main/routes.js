@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Rota para a página inicial
 router.get('/', (req, res) => {
-  res.render('index.ejs'); // Renderiza a página index.ejs
+  res.render('index'); // Renderiza a página index.ejs
 });
 
 // Rota para processar o upload de arquivos (se necessário)
