@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="css/layoutCadastro.css">
+    <script src="https://kit.fontawesome.com/5c7c6d79df.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous">
+    </script>
+</head>
+
+<body class="bg-body-secondary">
+    <div class="container py-5">
+        <form id="frmCadastro" class="row rounded bg-body-tertiary " action="/cadastro" method="POST">
+            <h1 class="col-12">Registre-se</h1>
+            <div class="col-6">
+                <label for="nome" class="form-label">Nome</label>
+                <div class="input-group mb-3">
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu nome" class="form-control "
+                        oninput="nameValidate()">
+                    <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                </div>
+                <span class="span-required">O nome deve conter no mínimo 3 caracteres</span>
+            </div>
+
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <div class="input-group mb-3">
+                    <input type="email" name="email" id="email" placeholder="Digite seu email" class="form-control"
+                        oninput="emailValidate()">
+                    <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                </div>
+                <span class="span-required" id="email-error" style="display: none; color: red;">Este email já está registrado</span>
+            </div>
+            <div class="col-md-6">
+                <label for="senha" class="form-label">Senha</label>
+                <div class="input-group mb-3">
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha" class="form-control"
+                        oninput="passwordValidate()">
+                    <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                </div>
+                <span class="span-required">A senha deve conter no mínimo 8 caracteres</span>
+            </div>
+            <div class="col-6">
+                <label for="confirmar" class="form-label">Confirmar Senha</label>
+                <div class="input-group mb-3">
+                    <input type="password" name="confirmar" id="confirmar" placeholder="Digite sua senha novamente"
+                        class="form-control" oninput="confirmPasswordValidate()">
+                    <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                </div>
+                <span class="span-required">As senhas devem se coincidir</span>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" id="btnContinuar">Continuar</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="fixed-bottom">
+        <div class="text-center p-4" style="background-color: rgba(28, 108, 173, 0.644);">
+            © 2023 Copyright:
+            <a class="text-reset fw-bold" href="#">Grupo ESC</a>
+        </div>
+    </footer>
+
+    <script>
+        const form = document.getElementById('frmCadastro');
+        const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]w+)*\.\w+([-.]\+)*$/;
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const campos = document.querySelectorAll('.form-control');
+            const spans = document.querySelectorAll('.span-required');
+
+            const userData = {
+                nome: campos[0].value,
+                email: campos[1].value,
+                senha: campos[2].value,
+            };
+
+            function setError(index) {
+                campos[index].style.border = '2px solid #e63636';
+                spans[index].style.display = 'block';
+            }
+
+            function removeError(index) {
+                campos[index].style.border = '';
+                spans[index].style.display = 'none';
+            }
+
+            function nameValidate() {
+                if (userData.nome.length < 3) {
+                    setError(0);
+                    return false;
+                } else {
+                    removeError(0);
+                    return true;
+                }
+            }
+
+            function emailValidate() {
+                if (emailRegex.test(userData.email)) {
+                    removeError(1);
+                    return true;
+                } else {
+                    setError(1);
+                    return false;
+                }
+            }
+
+            function passwordValidate() {
+                if (userData.senha.length < 8) {
+                    setError(2);
+                    return false;
+                } else {
+                    removeError(2);
+                    return true;
+                }
+            }
+
+            function confirmPasswordValidate() {
+                if (campos[3].value != userData.senha) {
+                    setError(3);
+                    return false;
+                } else {
+                    removeError(3);
+                    return true;
+                }
+            }
+
+            async function verificaEmail(email) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        if (email === 'test@example.com') {
+                            resolve(true);
+                        } else {
+                            resolve(false);
+                        }
+                    }, 1000); // Simula um atraso de 1 segundo (você deve remover isso na implementação real)
+                });
+            }
+
+            async function EmailRegistrado(email) {
+                // Verifique o email no servidor
+                const registrado = await verificaEmail(email);
+                return registrado;
+            }
+
+            async function handleSubmit() {
+                const isRegistered = await EmailRegistrado(userData.email);
+
+                if (isRegistered) {
+                    // Se o email já estiver registrado, mostre a mensagem de erro
+                    setError(1); // Índice 1 corresponde ao campo de email
+                    document.getElementById('email-error').style.display = 'block';
+                } else {
+                    // Continue com o envio do formulário se o email não estiver registrado
+                    form.submit();
+                }
+            }
+
+            if (!nameValidate() || !emailValidate() || !passwordValidate() || !confirmPasswordValidate()) {
+                event.preventDefault();
+            } else {
+                handleSubmit();
+            }
+        });
+    </script>
+</body>
+
+</html>
