@@ -17,3 +17,15 @@ exports.relatorioPost = async (req, res) => {
     contagensCaracteristicas: contagensCaracteristicas,
   });
 }
+
+// relatorioCtrl.js
+/*function listarCabecalhoChars() {
+  // Aqui você pode gerar o conteúdo do cabeçalho da tabela dinamicamente
+  const cabecalho = `
+      <th>Contagem de chars</th>
+      <th>Característica 2</th>
+  `;
+  return cabecalho;
+}
+
+module.exports = { listarCabecalhoChars };*/
