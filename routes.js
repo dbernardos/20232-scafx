@@ -42,11 +42,11 @@ app.get('/principal', verificarAutenticacao, principalCtrl.principalPagina);
 app.get('/cadastro', cadastroCtrl.cadastroPagina);
 app.post('/cadastro', cadastroCtrl.cadastroPost);
 
-app.get('/processamento', verificarAutenticacao, processamentoCtrl.processamentoPagina);
-app.post('/processamento', verificarAutenticacao, processamentoCtrl.processamentoPost);
+app.get('/processamento', processamentoCtrl.processamentoPagina);
+app.post('/processamento', processamentoCtrl.processamentoPost);
 
-app.get('/relatorio', verificarAutenticacao, relatorioCtrl.relatorioPagina);
-app.post('/relatorio', verificarAutenticacao, relatorioCtrl.relatorioPost);
+app.get('/relatorio', relatorioCtrl.relatorioPagina);
+app.post('/relatorio', relatorioCtrl.relatorioPost);
 
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
